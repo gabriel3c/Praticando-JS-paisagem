@@ -1,0 +1,74 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    pincel.fillStyle = 'lightgray';
+    pincel.fillRect(0, 0, 600, 400);
+
+    function desenhaQuadrado(x, y, cor){
+        pincel.fillStyle = cor;
+        pincel.fillRect(x, y, 600,  100);
+    
+        //pincel.strokeStyle = "black";
+       // pincel.strokeRect(x, y, 600,  100);
+    }
+    function desenhaRetangulo(xi, yi, x, y, cor){
+        pincel.fillStyle = cor;
+        pincel.fillRect(xi, yi, x,  y);
+    
+        //pincel.strokeStyle = "black";
+       // pincel.strokeRect(x, y, 600,  100);
+
+    }
+
+    function desenhaCirculo(x, y, raio, cor) {
+
+        pincel.fillStyle = cor;
+        pincel.beginPath();
+        pincel.arc(x, y, raio, 0, 2*3.14);
+        pincel.fill();
+    }
+
+    function desenhaFlor (x, y, raio){
+
+        desenhaCirculo(x, y, raio, "red"); //centro
+        desenhaCirculo(x + 2 * raio, y, raio, "black"); //direita
+        desenhaCirculo(x - 2 * raio, y, raio, "orange"); //esquerda
+        desenhaCirculo(x, y - 2 * raio, raio, "yellow"); //top
+        desenhaCirculo(x, y + 2 * raio, raio, "blue"); //bottom
+    }
+
+    function desenhaNuvem (x, y, raio){
+        desenhaCirculo(x, y, raio, "white");
+        desenhaCirculo(x + 1.5 * raio, y, raio, "white");
+        desenhaCirculo(x + 3 * raio, y, raio, "white");
+        desenhaCirculo(x + 4.5 * raio, y, raio, "white");
+    }
+
+    function desenhaSol(x, y, raio){
+        desenhaCirculo(x, y, raio, "yellow");
+        desenhaRetangulo(x - 2.4*raio , y, raio * 1.2, raio * 0.1, "yellow");
+        desenhaRetangulo(x + 1.2*raio , y, raio * 1.2, raio * 0.1, "yellow");
+        desenhaRetangulo(x , y + 1.2 * raio, raio * 0.1, raio * 1, "yellow");
+    }
+
+    function desenhaArvore(){
+        desenhaRetangulo
+    }
+
+
+    desenhaQuadrado(0, 300, "lightgreen"); //campo
+    desenhaSol(300, 50, 25); //sol lindo de cada dia
+
+    desenhaNuvem(50, 50, 30);
+    desenhaNuvem(410, 50, 30);
+
+    desenhaFlor(50, 335, 10);
+    desenhaFlor(200, 360, 10);
+    desenhaFlor(400, 340, 10);
+    desenhaFlor(550, 365, 10);
+
+
+</script>
